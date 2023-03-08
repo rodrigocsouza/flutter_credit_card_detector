@@ -155,6 +155,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
         labelText,
         nextTexFieldView,
         inputFormatters,
+        decoration,
         String? Function()? errorText}) {
       return Container(
         width: width,
@@ -337,6 +338,13 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
             nextFocusNode: _nameFocus,
             labelText: widget.labelTextNum,
             errorText: controller.validateNumber,
+            decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.credit_card),
+                        hintText: 'Número do cartão',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                        ),
+                      ),
           ),
           SizedBox(height: 8),
           //Nome no cartão
