@@ -421,7 +421,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                     CheckboxListTile(
                       title: const Text(
                         "Gostaria de gravar os dados do cartão para as próximas compras no PayOk?",
-                        style: TextStyle(color: Colors.orange),
+                        style: TextStyle(color: Colors.orange, fontSize: 14),
                       ),
                       value: creditCardGravarDadosCartao,
                       onChanged: (newValue) {
@@ -440,7 +440,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                     CheckboxListTile(
                       title: const Text(
                         "Aceito as condições estabelecidas no contrato.",
-                        style: TextStyle(color: Colors.orange),
+                        style: TextStyle(color: Colors.orange, fontSize: 14),
                       ),
                       value: creditCardAceitaContrato,
                       onChanged: (newValue) {
@@ -452,21 +452,13 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       controlAffinity: ListTileControlAffinity
                           .leading, //  <-- leading Checkbox
                     ),
-                    SizedBox(
-                      height: 8,
-                    ),
+                    
                     InkWell(
                         child:
                             const Text('Clique aqui para acessar o contrato',
                         style: TextStyle(color: Colors.blue)),
                         onTap: () => print(
-                            'https://docs.flutter.io/flutter/services/UrlLauncher-class.html')),
-                    SizedBox(
-                      height: 8,
-                    ),
-        
-        
-        
+                            'https://docs.flutter.io/flutter/services/UrlLauncher-class.html'))
         ],
       );
     }
@@ -490,20 +482,22 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
               gravaDadosCartao: widget.gravarDadosCartao,
               aceitaContrato: widget.aceitaContrato,
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 5),
             widget.viewLayout == true
                 ? _inputSectionRow()
                 : _inputSectionColumn(),
             SizedBox(
               width: double.infinity,
-              height: 55
+              height: 20
               ),
             //RaisedButton efetuar pagamento
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: widget.colorButton,
                 minimumSize: Size(88, 36),
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 150,
+                  vertical: 18),
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15)),
                 ),
