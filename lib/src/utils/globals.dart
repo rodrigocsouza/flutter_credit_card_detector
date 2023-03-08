@@ -16,6 +16,8 @@ String creditCardExpData = '';
 String creditCardCVV = '';
 String creditCardBand = '';
 String creditCardCPF = '';
+bool gravarDadosCartao = false;
+bool aceitaContrato = false;
 
 String? textRequired;
 String? textSelectBand;
@@ -24,6 +26,9 @@ String? textIntroNameValid;
 String? textCardExpired;
 String? textInvalidateMonth;
 bool? validateCpfVisibility;
+bool? validateGravarDadosCartao;
+bool? validateAceitaContrato;
+
 
 List<String> listBand = [];
 

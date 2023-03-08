@@ -16,4 +16,10 @@ class CreditCardControllerBase {
 
   late String iconBand;
   changeIconBand(String value) => iconBand = value;
+
+  late bool gravarDadosCartao;
+  changeGravarDadosContrato(bool value) => gravarDadosCartao = value; 
+
+  late bool aceitaContrato;
+  changeAceitaContrato(bool value) => aceitaContrato = value; 
 }

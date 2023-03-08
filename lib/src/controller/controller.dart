@@ -18,6 +18,8 @@ class ControllerBase with ChangeNotifier {
   late String cvv;
   late String cpf;
   late String iconBand;
+  late bool gravarDadosCartao;
+  late bool aceitaContrato;
 
   //--------- Ataliza status do widget --------
   String get getNumber {
@@ -44,6 +46,13 @@ class ControllerBase with ChangeNotifier {
     return iconBand;
   }
 
+  bool get getGravarDadosCartao{
+    return gravarDadosCartao;
+  }
+
+  bool get getAceitaContrato{
+    return aceitaContrato;
+  }
   //----------- Receber o dado do widget ----------
   changeNumber(String counter) {
     number = counter;
@@ -75,6 +84,16 @@ class ControllerBase with ChangeNotifier {
     notifyListeners();
   }
 
+  changeGravarDadosContrato(bool counter){
+    gravarDadosCartao = counter;
+    notifyListeners();
+  }
+
+  changeAceitaContrato(bool counter){
+    aceitaContrato = counter;
+    notifyListeners();
+  }
+
   //--------- Validadores ---------
   bool get isValid {
     return validateNumber() == null &&
@@ -82,7 +101,10 @@ class ControllerBase with ChangeNotifier {
         validateExpData() == null &&
         validateCVV() == null &&
         validateCPF() == null &&
-        validateIconBand() != 'unknown';
+        validateIconBand() != 'unknown' &&
+        validateGravarDadosCartao() &&
+        validateAceitaContrato()
+        ;
   }
 
   String? validateNumber() {
@@ -199,4 +221,13 @@ class ControllerBase with ChangeNotifier {
 
     return typeBand;
   }
+
+  bool validateGravarDadosCartao(){
+    return gravarDadosCartao;
+  }
+
+  bool validateAceitaContrato(){
+    return aceitaContrato;
+  }
+
 }

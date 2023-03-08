@@ -17,6 +17,8 @@ class BodyWidget extends StatefulWidget {
   final double textSizeMonth;
   final double textSizeCVC;
   final List<String> listBand;
+  final bool gravaDadosCartao;
+  final bool aceitaContrato;
 
   const BodyWidget({
     Key? key,
@@ -30,6 +32,8 @@ class BodyWidget extends StatefulWidget {
     required this.textSizeMonth,
     required this.textSizeCVC,
     required this.listBand,
+    required this.gravaDadosCartao,
+    required this.aceitaContrato,
   }) : super(key: key);
 
   @override

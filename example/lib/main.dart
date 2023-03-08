@@ -77,5 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
     print('CVV: $creditCardCVV'); // Código de segurança
     print('Bandeira: $creditCardBand'); // Bandeira do cartão
     print('CPF: $creditCardCPF'); // CPF do Titular
+    print('Grava dados do cartão: $gravarDadosCartao');
+    print('Aceita Contrato: $aceitaContrato');
   }
 }

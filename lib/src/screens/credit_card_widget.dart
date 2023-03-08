@@ -32,6 +32,8 @@ class CreditCardWidget extends StatefulWidget {
   final List<String> listBand;
   final bool viewLayout;
   final bool cpfVisibility;
+  final bool gravarDadosCartao;
+  final bool aceitaContrato;
   final Function() onTap;
 
   const CreditCardWidget(
@@ -41,7 +43,7 @@ class CreditCardWidget extends StatefulWidget {
       this.labelTextExpData = 'MM/YY',
       this.labelTextCVV = 'CVV/CVC',
       this.labelTextCPF = 'CPF do Titular',
-      this.labelTextButton = 'Efetuar pagamento',
+      this.labelTextButton = 'Feito!',
       this.titleCreditCard = 'Cartão de Crédito',
       this.labelTextValidate = 'Valido Até',
       this.textRequired = 'Campo é obrigatorio',
@@ -75,6 +77,8 @@ class CreditCardWidget extends StatefulWidget {
       ],
       this.viewLayout = false,
       this.cpfVisibility = true,
+      this.gravarDadosCartao = false,
+      this.aceitaContrato = false,
       required this.onTap})
       : super(key: key);
 
@@ -100,6 +104,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
   final textFieldExpD = GlobalKey();
   final textFieldCvv = GlobalKey();
   final textFieldCpf = GlobalKey();
+  
 
   @override
   void initState() {
@@ -110,7 +115,8 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
     creditCardCVV = '';
     creditCardBand = '';
     creditCardCPF = '';
-
+    gravarDadosCartao = false;
+    aceitaContrato = false;
     validateCpfVisibility = widget.cpfVisibility;
 
     textRequired = widget.textRequired;
@@ -132,8 +138,9 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
     controller.expData = _expData.text == '' ? '' : _expData.text;
     controller.cvv = _cvv.text == '' ? '' : _cvv.text;
     controller.cpf = _cpf.text == '' ? '' : _cpf.text;
-  bool gravarDadosCartao = false;
-  bool aceitaContrato = false;
+    controller.gravarDadosCartao = gravarDadosCartao;
+    controller.aceitaContrato = aceitaContrato;
+
     _textFormField(
         {width,
         keyText,
@@ -172,7 +179,8 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
               creditCardCVV = controller.cvv;
               creditCardCPF = controller.cpf;
               creditCardBand = controller.typeBand;
-
+              gravarDadosCartao = controller.gravarDadosCartao;
+              aceitaContrato = controller.aceitaContrato;
               widget.onTap();
             } else {
               return null;
@@ -409,8 +417,10 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       ),
                       value: gravarDadosCartao,
                       onChanged: (newValue) {
+                        print('Clicou em gravar dados cartão novoValor $newValue valorAntigo $gravarDadosCartao');
                         setState(() {
                           gravarDadosCartao = newValue!;
+                          controller.changeGravarDadosContrato(newValue);
                         });
                       },
                       controlAffinity: ListTileControlAffinity
@@ -428,6 +438,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       onChanged: (newValue) {
                         setState(() {
                           aceitaContrato = newValue!;
+                          controller.changeAceitaContrato(newValue);
                         });
                       },
                       controlAffinity: ListTileControlAffinity
@@ -468,12 +479,17 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
               textSizeMonth: widget.textSizeMonth,
               textSizeCVC: widget.textSizeCVC,
               listBand: widget.listBand,
+              gravaDadosCartao: widget.gravarDadosCartao,
+              aceitaContrato: widget.aceitaContrato,
             ),
             SizedBox(height: 10),
             widget.viewLayout == true
                 ? _inputSectionRow()
                 : _inputSectionColumn(),
-            SizedBox(height: 8),
+            SizedBox(
+              width: double.infinity,
+              height: 55
+              ),
             //RaisedButton efetuar pagamento
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -481,7 +497,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                 minimumSize: Size(88, 36),
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(2)),
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
                 ),
               ),
               onPressed: controller.isValid
@@ -492,7 +508,8 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       creditCardCVV = controller.cvv;
                       creditCardCPF = controller.cpf;
                       creditCardBand = controller.typeBand;
-
+                      gravarDadosCartao = controller.gravarDadosCartao;
+                      aceitaContrato = controller.aceitaContrato;
                       widget.onTap();
                     }
                   : null,
