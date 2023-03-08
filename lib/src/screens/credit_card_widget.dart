@@ -115,8 +115,8 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
     creditCardCVV = '';
     creditCardBand = '';
     creditCardCPF = '';
-    gravarDadosCartao = false;
-    aceitaContrato = false;
+    creditCardGravarDadosCartao = false;
+    creditCardAceitaContrato = false;
     validateCpfVisibility = widget.cpfVisibility;
 
     textRequired = widget.textRequired;
@@ -138,8 +138,8 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
     controller.expData = _expData.text == '' ? '' : _expData.text;
     controller.cvv = _cvv.text == '' ? '' : _cvv.text;
     controller.cpf = _cpf.text == '' ? '' : _cpf.text;
-    controller.gravarDadosCartao = gravarDadosCartao;
-    controller.aceitaContrato = aceitaContrato;
+    controller.gravarDadosCartao = creditCardGravarDadosCartao;
+    controller.aceitaContrato = creditCardAceitaContrato;
 
     _textFormField(
         {width,
@@ -180,8 +180,8 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
               creditCardCVV = controller.cvv;
               creditCardCPF = controller.cpf;
               creditCardBand = controller.typeBand;
-              gravarDadosCartao = controller.gravarDadosCartao;
-              aceitaContrato = controller.aceitaContrato;
+              creditCardGravarDadosCartao = controller.gravarDadosCartao;
+              creditCardAceitaContrato = controller.aceitaContrato;
               widget.onTap();
             } else {
               return null;
@@ -423,11 +423,11 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                         "Gostaria de gravar os dados do cartão para as próximas compras no PayOk?",
                         style: TextStyle(color: Colors.orange),
                       ),
-                      value: gravarDadosCartao,
+                      value: creditCardGravarDadosCartao,
                       onChanged: (newValue) {
-                        print('Clicou em gravar dados cartão novoValor $newValue valorAntigo $gravarDadosCartao');
+                        print('Clicou em gravar dados cartão novoValor $newValue valorAntigo $creditCardGravarDadosCartao');
                         setState(() {
-                          gravarDadosCartao = newValue!;
+                          creditCardGravarDadosCartao = newValue!;
                           controller.changeGravarDadosContrato(newValue);
                         });
                       },
@@ -442,10 +442,10 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                         "Aceito as condições estabelecidas no contrato.",
                         style: TextStyle(color: Colors.orange),
                       ),
-                      value: aceitaContrato,
+                      value: creditCardAceitaContrato,
                       onChanged: (newValue) {
                         setState(() {
-                          aceitaContrato = newValue!;
+                          creditCardAceitaContrato = newValue!;
                           controller.changeAceitaContrato(newValue);
                         });
                       },
@@ -516,8 +516,8 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       creditCardCVV = controller.cvv;
                       creditCardCPF = controller.cpf;
                       creditCardBand = controller.typeBand;
-                      gravarDadosCartao = controller.gravarDadosCartao;
-                      aceitaContrato = controller.aceitaContrato;
+                      creditCardGravarDadosCartao = controller.gravarDadosCartao;
+                      creditCardAceitaContrato = controller.aceitaContrato;
                       widget.onTap();
                     }
                   : null,

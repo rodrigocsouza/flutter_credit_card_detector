@@ -16,8 +16,8 @@ String creditCardExpData = '';
 String creditCardCVV = '';
 String creditCardBand = '';
 String creditCardCPF = '';
-bool gravarDadosCartao = false;
-bool aceitaContrato = false;
+bool creditCardGravarDadosCartao = false;
+bool creditCardAceitaContrato = false;
 
 String? textRequired;
 String? textSelectBand;
