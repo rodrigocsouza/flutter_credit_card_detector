@@ -36,7 +36,7 @@ class CreditCardWidget extends StatefulWidget {
 
   const CreditCardWidget(
       {Key? key,
-      this.labelTextNum = 'Numero do cartão',
+      this.labelTextNum = 'Número do cartão',
       this.labelTextName = 'Nome no cartão',
       this.labelTextExpData = 'MM/YY',
       this.labelTextCVV = 'CVV/CVC',
@@ -132,7 +132,8 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
     controller.expData = _expData.text == '' ? '' : _expData.text;
     controller.cvv = _cvv.text == '' ? '' : _cvv.text;
     controller.cpf = _cpf.text == '' ? '' : _cpf.text;
-
+  bool gravarDadosCartao = false;
+  bool aceitaContrato = false;
     _textFormField(
         {width,
         keyText,
@@ -190,9 +191,11 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderSide: BorderSide(color: widget.colorButton),
+              borderRadius: BorderRadius.all(Radius.circular(15)),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: widget.colorButton),
+              borderRadius: BorderRadius.all(Radius.circular(15)),
             ),
             labelText: labelText,
             labelStyle: TextStyle(color: widget.colorTextField),
@@ -251,7 +254,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
               //MM/YY
               _textFormField(
                 keyText: textFieldExpD,
-                width: mediaQuery(context, 0.45),
+                width: mediaQuery(context, 0.35),
                 controllerTextField: _expData,
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
@@ -268,7 +271,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
               //CVV/CVC
               _textFormField(
                 keyText: textFieldCvv,
-                width: mediaQuery(context, 0.45),
+                width: mediaQuery(context, 0.35),
                 controllerTextField: _cvv,
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
@@ -347,7 +350,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
             children: <Widget>[
               //MM/YY
               _textFormField(
-                width: mediaQuery(context, 0.45),
+                width: mediaQuery(context, 0.35),
                 controllerTextField: _expData,
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
@@ -361,7 +364,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
               ),
               //CVV/CVC
               _textFormField(
-                width: mediaQuery(context, 0.45),
+                width: mediaQuery(context, 0.35),
                 controllerTextField: _cvv,
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
@@ -396,6 +399,55 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                   labelText: widget.labelTextCPF,
                   errorText: controller.validateCPF,
                 ),
+        SizedBox(
+                      height: 8,
+                    ),
+                    CheckboxListTile(
+                      title: const Text(
+                        "Gostaria de gravar os dados do cartão para as próximas compras no PayOk?",
+                        style: TextStyle(color: Colors.orange),
+                      ),
+                      value: gravarDadosCartao,
+                      onChanged: (newValue) {
+                        setState(() {
+                          gravarDadosCartao = newValue!;
+                        });
+                      },
+                      controlAffinity: ListTileControlAffinity
+                          .leading, //  <-- leading Checkbox
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    CheckboxListTile(
+                      title: const Text(
+                        "Aceito as condições estabelecidas no contrato.",
+                        style: TextStyle(color: Colors.orange),
+                      ),
+                      value: aceitaContrato,
+                      onChanged: (newValue) {
+                        setState(() {
+                          aceitaContrato = newValue!;
+                        });
+                      },
+                      controlAffinity: ListTileControlAffinity
+                          .leading, //  <-- leading Checkbox
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    InkWell(
+                        child:
+                            const Text('Clique aqui para acessar o contrato',
+                        style: TextStyle(color: Colors.blue)),
+                        onTap: () => print(
+                            'https://docs.flutter.io/flutter/services/UrlLauncher-class.html')),
+                    SizedBox(
+                      height: 8,
+                    ),
+        
+        
+        
         ],
       );
     }

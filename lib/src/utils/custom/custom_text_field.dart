@@ -133,13 +133,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   }),
           border: OutlineInputBorder(
               borderSide: BorderSide(color: widget.colorBord),
-              borderRadius: BorderRadius.circular(8)),
+              borderRadius: BorderRadius.all(Radius.circular(15))),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: widget.colorBord),
-              borderRadius: BorderRadius.circular(8)),
+              borderRadius: BorderRadius.all(Radius.circular(15))),
           enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: widget.colorBord),
-              borderRadius: BorderRadius.circular(8)),
+              borderRadius: BorderRadius.all(Radius.circular(15))),
           labelText: widget.labelText,
           labelStyle: TextStyle(color: widget.colorText),
           errorText: widget.errorText == null ? null : widget.errorText!(),
